@@ -1,0 +1,52 @@
+body{
+    text-align: center;
+}
+
+.btn{
+    height: 200px;
+    width: 200px;
+    border-radius: 20%;
+    border: 10px solid black;
+    margin: 2rem;
+    text-align: center;
+    cursor: pointer;
+    /* line-height: rem; */
+}
+
+.btn-container{
+    display: flex;
+    justify-content:center;
+}
+
+.red{
+    background-color: rgb(248, 40, 40);
+}
+
+.green{
+    background-color: rgb(38, 242, 38);
+}
+
+.yellow{
+    background-color:rgb(238, 249, 39);
+}
+
+.purple{
+    background-color: rgb(52, 117, 239);
+}
+
+/* creating a flash class */
+.flash{
+    opacity: 0.5;
+    background-color: white;
+}
+
+.userflash{
+    opacity: 0.5;
+    background-color:skyblue;
+}
+
+/* when we enter wrong sequence */
+
+.body {
+    background-color: red;
+}
