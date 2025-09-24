@@ -7,4 +7,6 @@ A simple Simon Says game built with HTML, CSS and JavaScript.
 - Repeat the pattern by clicking the buttons.
 
 ## Live Demo
-[Click here to play the Dice Roll Game]("https://github.com/Raiyansiddique786/Simon-Says-Game");
+
+
+[Click here to play the Simon Says Game](https://Raiyansiddique786.github.io/Simon-Says-Game/);
