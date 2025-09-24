@@ -50,3 +50,16 @@ body{
 .body {
     background-color: red;
 }
+
+#startGame{
+    color:rgb(3, 3, 234);
+    background-color:rgb(231, 215, 215);
+    font-weight: bolder;
+    padding: 6px;
+    border: 3px solid black;
+    border-radius: 50px;
+}
+
+#startGame:active{
+    background-color: green;
+}
