@@ -1,3 +1,6 @@
+// step 1 : Press any key to start the game.
+// step2 : any random button flash and our level update:
+
 let gameSeq = [];
 let userSeq = [];
 
@@ -8,7 +11,8 @@ let level = 0;
 
 let highestLevel = 0;
 
-// Step1: Start game on any key press
+
+// Step1: Start game on clicking Start Button:
 document.getElementById("startGame").addEventListener("click", () => {
     if (!start) {
         console.log('game is started');
@@ -16,11 +20,11 @@ document.getElementById("startGame").addEventListener("click", () => {
         level =0;
         gameSeq =[];
         userSeq =[];
-
         levelUp();
     }
 });
 
+// step :2
 // flash a button for the game sequence:
 function gameflash(btn) {
     // first add flash class
@@ -32,6 +36,7 @@ function gameflash(btn) {
 }
 
 // flash effect occurs when user clicks
+
 function userflash(btn) {
     // first add flash class
     btn.classList.add("userflash");
@@ -41,8 +46,10 @@ function userflash(btn) {
     }, 300);
 }
 
+// function to increase the lvel of game:
 function levelUp() {
 
+    // when level up call reset its value so that user have to enter the color sequence from the start
     userSeq = [];
     level++;
     let h2 = document.querySelector("h2");
@@ -56,16 +63,22 @@ function levelUp() {
     let randomBtn = document.querySelector(`.${randomColor}`);
     // let randomBtn = document.querySelector('.'+randomColor);
 
+    // console.log(randomIndex);
+    // console.log(randomColor);
+    // console.log(randomBtn);
+
     // push random color to gamesequence:
     gameSeq.push(randomColor);
-    console.log(gameSeq);
 
     // flash the random button 
     gameflash(randomBtn);
 }
 
-// checking user Sequence:
+// Check User Sequence
 function checkAns(index) {
+    // console.log('current level is ' + level);
+    // let index = level - 1;
+
     if (userSeq[index] === gameSeq[index]) {
         // if we are in middle of any sequence then do nothing
         // but 
@@ -74,9 +87,10 @@ function checkAns(index) {
             // giving delay when we level up
             setTimeout(levelUp, 1000);
         }
+
     } else {
         let h2 = document.querySelector("h2");
-        h2.innerHTML = `Game over! Your score was <b>${level}</b> <br> Press Start to Play Again:`;
+        h2.innerHTML = `Game over! Your score was <b>${level}<b> <br> Press Start to play the Game`;
 
         let body = document.querySelector('body');
         body.classList.add('body');
@@ -96,33 +110,36 @@ function checkAns(index) {
     }
 }
 
-// // user press any button
-// function btnPress() {
-    
-//     userflash(this);
-//     // generating and adding user Enter color
-//     userColor = this.getAttribute("id");
-//     userSeq.push(userColor);
+let allBtns = document.querySelectorAll('.btn');
+for (btn of allBtns) {
+    btn.addEventListener('click', btnPress)
+}
 
-//     checkAns(userSeq.length - 1); // last index of user sequence
-// }
+// user press any button
+function btnPress() {
+    // console.log(this);
 
-// let allBtns = document.querySelectorAll('.btn');
-// for (btn of allBtns) {
-//     btn.addEventListener('click', btnPress)
-// }
+    // let btn = this;
+    userflash(this);
 
-// 5️⃣ Handle user button clicks
-document.querySelectorAll(".btn").forEach(btn => {
-    btn.addEventListener("click", function () {
-        if (!start) return; // ignore clicks if game not started
-        userflash(this);
-        let userColor = this.id;
-        userSeq.push(userColor);
-        checkAns(userSeq.length - 1);
-    });
-});
+    // generating and adding user Enter color
+    userColor = this.getAttribute("id");
+    userSeq.push(userColor);
 
+    // calling checkAns ()
+    checkAns(userSeq.length - 1); // last index of user sequence
+}
+
+// // Handle user button clicks
+// document.querySelectorAll(".btn").forEach(btn => {
+//     btn.addEventListener("click", function () {
+//         if (!start) return; // ignore clicks if game not started
+
+//         userflash(this);
+//         userSeq.push(this.id);
+//         checkAns(userSeq.length - 1);
+//     });
+// });
 
 // reset the game (when we enter wrong sequence):
 function reset() {
@@ -132,6 +149,8 @@ function reset() {
     userSeq = [];
     level = 0;
 }
+
+
 
 
 
