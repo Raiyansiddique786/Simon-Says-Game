@@ -13,7 +13,7 @@ let highestLevel = 0;
 
 
 // Step1: Start game on any key press
-document.addEventListener("keypress", () => {
+document.addEventListener("click", () => {
     if (!start) {
         console.log('game is started');
         start = true;
@@ -140,3 +140,4 @@ function reset() {
     userSeq = [];
     level = 0;
 }
+
