@@ -1,6 +1,3 @@
-// step 1 : Press any key to start the game.
-// step2 : any random button flash and our level update:
-
 let gameSeq = [];
 let userSeq = [];
 
@@ -11,18 +8,19 @@ let level = 0;
 
 let highestLevel = 0;
 
-
 // Step1: Start game on any key press
-document.addEventListener("click", () => {
+document..getElementById("startGame").addEventListener("click", () => {
     if (!start) {
         console.log('game is started');
         start = true;
+        level =0;
+        gameSeq =[];
+        userSeq =[];
 
         levelUp();
     }
 });
 
-// step :2
 // flash a button for the game sequence:
 function gameflash(btn) {
     // first add flash class
@@ -34,7 +32,6 @@ function gameflash(btn) {
 }
 
 // flash effect occurs when user clicks
-
 function userflash(btn) {
     // first add flash class
     btn.classList.add("userflash");
@@ -44,10 +41,8 @@ function userflash(btn) {
     }, 300);
 }
 
-// function to increase the lvel of game:
 function levelUp() {
 
-    // when level up call reset its value so that user have to enter the color sequence from the start
     userSeq = [];
     level++;
     let h2 = document.querySelector("h2");
@@ -61,10 +56,6 @@ function levelUp() {
     let randomBtn = document.querySelector(`.${randomColor}`);
     // let randomBtn = document.querySelector('.'+randomColor);
 
-    // console.log(randomIndex);
-    // console.log(randomColor);
-    // console.log(randomBtn);
-
     // push random color to gamesequence:
     gameSeq.push(randomColor);
     console.log(gameSeq);
@@ -73,11 +64,8 @@ function levelUp() {
     gameflash(randomBtn);
 }
 
-// checking that is user enter the correct sequence of color or not
+// checking user Sequence:
 function checkAns(index) {
-    // console.log('current level is ' + level);
-    // let index = level - 1;
-
     if (userSeq[index] === gameSeq[index]) {
         // if we are in middle of any sequence then do nothing
         // but 
@@ -110,16 +98,12 @@ function checkAns(index) {
 
 // user press any button
 function btnPress() {
-    // console.log(this);
-
-    // let btn = this;
+    
     userflash(this);
-
     // generating and adding user Enter color
     userColor = this.getAttribute("id");
     userSeq.push(userColor);
 
-    // calling checkAns ()
     checkAns(userSeq.length - 1); // last index of user sequence
 }
 
@@ -128,16 +112,13 @@ for (btn of allBtns) {
     btn.addEventListener('click', btnPress)
 }
 
-
-
 // reset the game (when we enter wrong sequence):
 function reset() {
-
-
 
     start = false;
     gameSeq = [];
     userSeq = [];
     level = 0;
 }
+
 
