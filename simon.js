@@ -9,7 +9,7 @@ let level = 0;
 let highestLevel = 0;
 
 // Step1: Start game on any key press
-document..getElementById("startGame").addEventListener("click", () => {
+document.getElementById("startGame").addEventListener("click", () => {
     if (!start) {
         console.log('game is started');
         start = true;
@@ -76,7 +76,7 @@ function checkAns(index) {
         }
     } else {
         let h2 = document.querySelector("h2");
-        h2.innerHTML = `Game over! Your score was <b>${level}<b> <br> Press any key to start`;
+        h2.innerHTML = `Game over! Your score was <b>${level}</b> <br> Press Start to Play Again:`;
 
         let body = document.querySelector('body');
         body.classList.add('body');
@@ -96,21 +96,33 @@ function checkAns(index) {
     }
 }
 
-// user press any button
-function btnPress() {
+// // user press any button
+// function btnPress() {
     
-    userflash(this);
-    // generating and adding user Enter color
-    userColor = this.getAttribute("id");
-    userSeq.push(userColor);
+//     userflash(this);
+//     // generating and adding user Enter color
+//     userColor = this.getAttribute("id");
+//     userSeq.push(userColor);
 
-    checkAns(userSeq.length - 1); // last index of user sequence
-}
+//     checkAns(userSeq.length - 1); // last index of user sequence
+// }
 
-let allBtns = document.querySelectorAll('.btn');
-for (btn of allBtns) {
-    btn.addEventListener('click', btnPress)
-}
+// let allBtns = document.querySelectorAll('.btn');
+// for (btn of allBtns) {
+//     btn.addEventListener('click', btnPress)
+// }
+
+// 5️⃣ Handle user button clicks
+document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+        if (!start) return; // ignore clicks if game not started
+        userflash(this);
+        let userColor = this.id;
+        userSeq.push(userColor);
+        checkAns(userSeq.length - 1);
+    });
+});
+
 
 // reset the game (when we enter wrong sequence):
 function reset() {
@@ -120,5 +132,6 @@ function reset() {
     userSeq = [];
     level = 0;
 }
+
 
 
